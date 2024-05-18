@@ -10,5 +10,5 @@ build:
     just butane --pretty --strict config/setup.bu > build/config/setup.ign
 
 # run butane via podman
-@butane *ARGS:
+butane *ARGS:
     podman run -i -v "${PWD}":/code --workdir /code --rm quay.io/coreos/butane:release -d /code/build {{ARGS}}
