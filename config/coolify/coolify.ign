@@ -1,0 +1,36 @@
+{
+  "ignition": {
+    "version": "3.4.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "groups": [
+          "docker"
+        ],
+        "name": "core"
+      }
+    ]
+  },
+  "storage": {
+    "directories": [
+      {
+        "path": "/var/data",
+        "mode": 493
+      }
+    ]
+  },
+  "systemd": {
+    "units": [
+      {
+        "enabled": true,
+        "name": "docker.service"
+      },
+      {
+        "contents": "[Unit]\nDescription=Persist a /data directory in root\nConditionPathExists=!/data\n[Service]\nType=oneshot\nStandardOutput=journal+console\nExecStart=/usr/bin/chattr -i /\nExecStart=/usr/bin/ln -s var/data /data\nExecStart=/usr/bin/chattr +i /\n[Install]\nWantedBy=multi-user.target\n",
+        "enabled": true,
+        "name": "coolify-data-dir.service"
+      }
+    ]
+  }
+}
