@@ -1,0 +1,26 @@
+name: build and deploy
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    concurrency: ci-${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo snap install --edge --classic just
+
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: build
+        run: just build
+
+      - name: deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
