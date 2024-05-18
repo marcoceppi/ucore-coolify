@@ -11,8 +11,8 @@ passwd:
 ignition:
   config:
     merge:
-    - source: https://raw.githubusercontent.com/marcoceppi/ucore-coolify/main/config/setup.ign
+    - source: https://marcoceppi.github.io/ucore-coolify/config/setup.ign
       compression: null
       verification:
-        hash: sha512-468792c73b10a70d94a9fce705fb0e9b2822c017e4bff16512a9b1f4e93cd5a3e40f7190bb30479e805ead28c5529cabade6d357ea6bd7a4362c5d1429732997
+        hash: sha512-349aaeb946363af69f34a333a0977ca134e0647dfa45459c0869f39b50f1b53cf76db250fb54de6d3be272ed2ed30e8028ce4edc4563279b16632b5821641268
 ```
