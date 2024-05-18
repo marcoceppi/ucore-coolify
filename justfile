@@ -5,6 +5,7 @@ _:
 # build ign files
 build:
     mkdir -p build/config/{coolify,ucore}
+    tree
     just butane --pretty --strict config/coolify/coolify.bu > build/config/coolify/coolify.ign
     just butane --pretty --strict config/ucore/autoinstall.bu > build/config/ucore/autoinstall.ign
     just butane --pretty --strict config/setup.bu > build/config/setup.ign
