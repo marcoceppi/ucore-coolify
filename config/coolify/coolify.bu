@@ -1,0 +1,29 @@
+variant: fcos
+version: 1.5.0
+passwd:
+  users:
+    - name: core
+      groups:
+        - docker
+storage:
+  directories:
+    - path: /var/data
+      mode: 0755
+systemd:
+  units:
+    - name: docker.service
+      enabled: true
+    - name: coolify-data-dir.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Persist a /data directory in root
+        ConditionPathExists=!/data
+        [Service]
+        Type=oneshot
+        StandardOutput=journal+console
+        ExecStart=/usr/bin/chattr -i /
+        ExecStart=/usr/bin/ln -s var/data /data
+        ExecStart=/usr/bin/chattr +i /
+        [Install]
+        WantedBy=multi-user.target

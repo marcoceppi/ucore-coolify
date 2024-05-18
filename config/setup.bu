@@ -1,0 +1,7 @@
+variant: fcos
+version: 1.5.0
+ignition:
+  config:
+    merge:
+      - local: config/ucore/autoinstall.ign
+      - local: config/coolify/coolify.ign
