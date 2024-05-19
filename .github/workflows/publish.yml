@@ -16,6 +16,8 @@ jobs:
 
       - name: checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: build
         run: just build
@@ -24,3 +26,11 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build
+
+      - name: update readme
+        run: sed -i 's/sha512-.*$/sha512-'$(shasum -a 512 build/config/setup.ign | awk '{print $1}')'/' README.md
+
+      - name: commit & push
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update readme with latest hash"
