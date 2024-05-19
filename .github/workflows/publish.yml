@@ -16,8 +16,6 @@ jobs:
 
       - name: checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
 
       - name: build
         run: just build
@@ -34,3 +32,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: update readme with latest hash"
+          branch: main
